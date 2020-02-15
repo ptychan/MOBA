@@ -15,10 +15,12 @@ public class SpawnGroupController : MonoBehaviour
     public WaypointPath waypointPath;
     public List<Spawner> spawners;
 
+    Team team;
     private float nextSpawnTime;
 
     void Start()
     {
+        team = GetComponent<Team>();
         nextSpawnTime = firstSpawnTime;
     }
 
@@ -28,8 +30,9 @@ public class SpawnGroupController : MonoBehaviour
         {
             foreach (var spawner in spawners)
             {
-                var enemy = Instantiate(spawner.enemyType, spawner.spawnMarker);
-                enemy.GetComponent<EnemyController>().SetPath(waypointPath);
+                var minion = Instantiate(spawner.enemyType, spawner.spawnMarker);
+                minion.GetComponent<Team>().faction = team.faction;
+                minion.GetComponent<EnemyController>().SetPath(waypointPath);
             }
             nextSpawnTime += spawnDelay;
         }

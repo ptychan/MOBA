@@ -160,6 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5590331205834992105}
   - component: {fileID: 5590331205834992103}
+  - component: {fileID: 3407691617072453832}
   m_Layer: 0
   m_Name: SpawnGroup
   m_TagString: Untagged
@@ -217,3 +218,16 @@ MonoBehaviour:
   - enemyType: {fileID: 6482865819792744895, guid: e24215ad6ec5b81458990db813cb058b,
       type: 3}
     spawnMarker: {fileID: 4703836052790180987}
+--- !u!114 &3407691617072453832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5590331205834992102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2146ab53aa242c4287e3843f6659b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: 0

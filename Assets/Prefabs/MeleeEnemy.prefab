@@ -86,10 +86,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6482865819792744835}
   - component: {fileID: 6482865819792744834}
+  - component: {fileID: 5648532306570759143}
   - component: {fileID: -953128909224008181}
   - component: {fileID: 6482865819792744837}
   - component: {fileID: 1200363004673407771}
-  - component: {fileID: 5648532306570759143}
+  - component: {fileID: 3613315989250698168}
+  - component: {fileID: -4020939943622484534}
+  - component: {fileID: -3388470244803142536}
   m_Layer: 9
   m_Name: MeleeEnemy
   m_TagString: Untagged
@@ -135,6 +138,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!135 &5648532306570759143
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6482865819792744895}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 18
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-953128909224008181
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -164,6 +180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrivalDistance: 2
+  attackRange: 1
+  attackRate: 1
 --- !u!114 &1200363004673407771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,19 +195,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
---- !u!135 &5648532306570759143
-SphereCollider:
+--- !u!114 &3613315989250698168
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6482865819792744895}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 18
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377104975997ce842ae344d2db827f39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4020939943622484534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6482865819792744895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e23e0c104293f649aac373f74d79a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 10
+--- !u!114 &-3388470244803142536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6482865819792744895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2146ab53aa242c4287e3843f6659b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: 0
 --- !u!1 &7016370235260023317
 GameObject:
   m_ObjectHideFlags: 0

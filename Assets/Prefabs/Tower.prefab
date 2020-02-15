@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 4277532838514591558}
   - component: {fileID: -4278801154972249007}
   - component: {fileID: 483817257253697989}
+  - component: {fileID: 3416999993992890481}
   m_Layer: 9
   m_Name: Tower
   m_TagString: Untagged
@@ -123,6 +124,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377104975997ce842ae344d2db827f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3416999993992890481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2672413404819595350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2146ab53aa242c4287e3843f6659b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: 0
 --- !u!1 &2672413405304754075
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5961778270926558239}
   - component: {fileID: 2683184123309318294}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}

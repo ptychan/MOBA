@@ -6,6 +6,12 @@ public class TargetingSystem : MonoBehaviour
 {
     List<Health> targetInRange = new List<Health>();
     Health targetHealth;
+    Team team;
+
+    private void Start()
+    {
+        team = GetComponent<Team>();
+    }
 
     public void UpdateTarget()
     {
@@ -27,6 +33,10 @@ public class TargetingSystem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        var otherTeam = other.GetComponentInParent<Team>();
+        if (otherTeam == null || otherTeam.faction == team.faction)
+            return;
+
         targetInRange.Add(other.GetComponentInParent<Health>());
         Debug.Log("[TargetingSystem] Adding target: " + other.name);
     }

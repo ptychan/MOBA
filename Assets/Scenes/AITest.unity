@@ -249,6 +249,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3416999993992890481, guid: b1325bea0bfb08646b29895fec7fcab3,
+        type: 3}
+      propertyPath: faction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2672413404819595350, guid: b1325bea0bfb08646b29895fec7fcab3,
         type: 3}
       propertyPath: m_Name
@@ -541,6 +546,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3416999993992890481, guid: b1325bea0bfb08646b29895fec7fcab3,
+        type: 3}
+      propertyPath: faction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2672413404819595350, guid: b1325bea0bfb08646b29895fec7fcab3,
         type: 3}
       propertyPath: m_Name
@@ -742,6 +752,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3416999993992890481, guid: b1325bea0bfb08646b29895fec7fcab3,
+        type: 3}
+      propertyPath: faction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2672413404819595350, guid: b1325bea0bfb08646b29895fec7fcab3,
         type: 3}
       propertyPath: m_Name
