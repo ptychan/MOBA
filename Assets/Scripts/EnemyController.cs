@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     private Health health;
     private WaypointPath path;
     private int nextPathIndex = 0;
+    private Vector3 waypointOffset;
     private bool isDying = false;
 
     void Start()
@@ -23,25 +24,24 @@ public class EnemyController : MonoBehaviour
         if (isDying)
         {
             Vector3 position = transform.position;
-            position.y = Mathf.Lerp(position.y, -10.0f, Time.deltaTime);
+            position.y = Mathf.Lerp(position.y, position.y - 5.0f, Time.deltaTime);
             transform.position = position;
-            if (position.y <= -10.0f)
+            if (position.y <= 0.0f)
             {
                 Destroy(gameObject);
             }
         }
         else if (health.IsAlive())
         {
-            Vector3 waypoint = path.GetWaypoint(nextPathIndex);
+            Vector3 waypoint = path.GetWaypoint(nextPathIndex) + waypointOffset;
             if (Vector2.Distance(waypoint.XZ(), transform.position.XZ()) <= arrivalDistance)
             {
                 nextPathIndex = path.GetNextIndex(nextPathIndex);
             }
-            agent.SetDestination(path.GetWaypoint(nextPathIndex));
+            agent.SetDestination(path.GetWaypoint(nextPathIndex) + waypointOffset);
         }
         else
         {
-            GetComponent<Collider>().enabled = false;
             agent.enabled = false;
             isDying = true;
         }
@@ -51,5 +51,7 @@ public class EnemyController : MonoBehaviour
     {
         path = waypointPath;
         nextPathIndex = 0;
+        waypointOffset = transform.position - path.GetWaypoint(0);
+        waypointOffset.y = 0.0f;
     }
 }

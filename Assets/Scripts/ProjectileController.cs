@@ -25,7 +25,7 @@ public class ProjectileController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Health>() == targetHealth)
+        if (other.GetComponentInParent<Health>() == targetHealth)
         {
             targetHealth.TakeDamage(damageAmount);
             Destroy(gameObject);

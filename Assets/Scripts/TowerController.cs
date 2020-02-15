@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TowerController : MonoBehaviour
 {
@@ -8,14 +6,13 @@ public class TowerController : MonoBehaviour
     public Transform turretTransform;
     public float fireRate;
 
-    List<Health> targetInRange = new List<Health>();
-    Health targetHealth;
-
+    TargetingSystem targeting;
     Health health;
     float nextAttackTime;
 
     private void Start()
     {
+        targeting = GetComponent<TargetingSystem>();
         health = GetComponent<Health>();
         nextAttackTime = 0.0f;
     }
@@ -24,45 +21,14 @@ public class TowerController : MonoBehaviour
     {
         if (health.IsAlive())
         {
-            UpdateTarget();
+            targeting.UpdateTarget();
             Attack();
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        targetInRange.Add(other.GetComponent<Health>());
-        Debug.Log("[TowerController] Adding target: " + other.name);
-    }
-    
-    private void OnTriggerExit(Collider other)
-    {
-        var otherHealth = other.GetComponent<Health>();
-        targetInRange.Remove(otherHealth);
-        Debug.Log("[TowerController] Removing target: " + other.name);
-
-        // If my current target just left, stop targeting it
-        if (otherHealth == targetHealth)
-        {
-            targetHealth = null;
-        }
-    }
-
-    private void UpdateTarget()
-    {
-        targetInRange.RemoveAll(x => !x.IsAlive());
-
-        if (!targetHealth || !targetHealth.IsAlive())
-        {
-            var closestTargetHealth = targetInRange
-                .OrderBy(x => (x.transform.position - transform.position).sqrMagnitude)
-                .FirstOrDefault();
-            targetHealth = closestTargetHealth;
         }
     }
 
     private void Attack()
     {
+        var targetHealth = targeting.GetCurrentTarget();
         if (targetHealth && nextAttackTime < Time.time)
         {
             // Fire projectile at target
