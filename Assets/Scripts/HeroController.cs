@@ -143,8 +143,11 @@ public class HeroController : MonoBehaviour
     {
         if (targetHealth == null || !targetHealth.IsAlive())
         {
-            currentState = State.Idle;
-            animator.SetInteger("AnimationState", (int)State.Idle);
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            {
+                currentState = State.Idle;
+                animator.SetInteger("AnimationState", (int)State.Idle);
+            }
         }
         else if (Vector3.Distance(targetHealth.transform.position, transform.position) > attackRange)
         {
@@ -166,8 +169,6 @@ public class HeroController : MonoBehaviour
             // Check attack time
             else if (nextAttackTime < Time.time)
             {
-                // Use weapon on target
-                weapon.Use(targetHealth);
                 animator.SetInteger("AnimationState", (int)State.Attack);
                 animator.SetTrigger("Attack");
 
@@ -179,5 +180,14 @@ public class HeroController : MonoBehaviour
 
     void UpdateDying()
     {
+    }
+
+    public void OnAttack()
+    {
+        if (targetHealth && targetHealth.IsAlive())
+        {
+            // Use weapon on target
+            weapon.Use(targetHealth);
+        }
     }
 }

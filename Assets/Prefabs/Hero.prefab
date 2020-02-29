@@ -129,6 +129,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
+--- !u!114 &1163903166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4770953198634569304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e185153d2ddb8024c98855e60b16770c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4770953200198546592
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,6 +240,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 272ec112bddec644a8af6599107e74f7, type: 3}
+--- !u!1 &4770953198634569304 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100048, guid: 272ec112bddec644a8af6599107e74f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4770953198634600584}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4770953198634996280 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400048, guid: 272ec112bddec644a8af6599107e74f7,
