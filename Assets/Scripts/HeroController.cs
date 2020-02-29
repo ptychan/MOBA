@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
-public class HeroController : MonoBehaviour
+public class HeroController : NetworkBehaviour
 {
     public float attackRange;
     public float attackRate;
@@ -84,7 +85,8 @@ public class HeroController : MonoBehaviour
 
     Command CheckInputCommand()
     {
-        if (Input.GetMouseButtonDown(1))
+        // Only control hero that we have authority over
+        if (hasAuthority && Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -109,16 +111,52 @@ public class HeroController : MonoBehaviour
 
     void ProcessMoveCommand()
     {
+        Cmd_Move(moveCommand.destination);
+    }
+
+    [Command]
+    void Cmd_Move(Vector3 destination)
+    {
+        Rpc_Move(destination);
+    }
+
+    [ClientRpc]
+    void Rpc_Move(Vector3 destination)
+    {
         currentState = State.Move;
-        agent.SetDestination(moveCommand.destination);
+        agent.SetDestination(destination);
     }
 
     void ProcessAttackCommand()
     {
         if (attackCommand.targetHealth)
         {
-            currentState = State.Attack;
-            targetHealth = attackCommand.targetHealth;
+            var identity = attackCommand.targetHealth.GetComponent<NetworkIdentity>();
+            Cmd_Attack(identity.netId);
+        }
+    }
+
+    [Command]
+    void Cmd_Attack(NetworkInstanceId netId)
+    {
+        Rpc_Attack(netId);
+    }
+
+    [ClientRpc]
+    void Rpc_Attack(NetworkInstanceId netId)
+    {
+        var target = NetworkServer.FindLocalObject(netId);
+        if (target == null)
+            target = ClientScene.FindLocalObject(netId);
+
+        if (target)
+        {
+            var netTargetHealth = target.GetComponent<Health>();
+            if (netTargetHealth)
+            {
+                currentState = State.Attack;
+                targetHealth = netTargetHealth;
+            }
         }
     }
 
