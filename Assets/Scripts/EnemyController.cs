@@ -16,9 +16,16 @@ public class EnemyController : MonoBehaviour
         Dying
     }
 
+    // These correspond to animator params
+    const int AnimStateIdle = 0;
+    const int AnimStateMove = 1;
+    const int AnimStateAttack = 2;
+    const int AnimStateDying = 3;
+
     private State currentState = State.MoveToNextPoint;
 
     private NavMeshAgent agent;
+    private Animator animator;
     private TargetingSystem targeting;
     private Health health;
     private Weapon weapon;
@@ -32,10 +39,15 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
         targeting = GetComponent<TargetingSystem>();
         health = GetComponent<Health>();
         weapon = GetComponent<Weapon>();
+
+        currentState = State.MoveToNextPoint;
         nextAttackTime = 0.0f;
+        animator.SetInteger("AnimationState", AnimStateMove);
+        animator.SetFloat("CycleOffset", Random.value);
     }
 
     void Update()
@@ -67,7 +79,7 @@ public class EnemyController : MonoBehaviour
         {
             nextPathIndex = path.GetNextIndex(nextPathIndex);
         }
-        agent.SetDestination(path.GetWaypoint(nextPathIndex) + waypointOffset);   
+        agent.SetDestination(path.GetWaypoint(nextPathIndex) + waypointOffset);
     }
 
     void UpdateChaseTarget()
@@ -84,14 +96,15 @@ public class EnemyController : MonoBehaviour
         if (CheckDying() || NoTarget() || IsTargetOutOfRange())
             return;
         
-        // Face the target
+        // Stop moving and face the target
         var targetHealth = targeting.GetCurrentTarget();
         agent.transform.forward = Vector3.Normalize(targetHealth.transform.position - transform.position);
+        agent.SetDestination(agent.transform.position);
 
         if (nextAttackTime < Time.time)
         {
-            // Use weapon on target
-            weapon.Use(targetHealth);
+            animator.SetInteger("AnimationState", AnimStateAttack);
+            animator.SetTrigger("Attack");
 
             // Set next time to fire
             nextAttackTime = Time.time + (1.0f / attackRate);
@@ -115,6 +128,7 @@ public class EnemyController : MonoBehaviour
         {
             agent.enabled = false;
             currentState = State.Dying;
+            animator.SetInteger("AnimationState", AnimStateDying);
             return true;
         }
         return false;
@@ -126,6 +140,7 @@ public class EnemyController : MonoBehaviour
         if (targeting.GetCurrentTarget() == null)
         {
             currentState = State.MoveToNextPoint;
+            animator.SetInteger("AnimationState", AnimStateMove);
             return true;
         }
         return false;
@@ -137,6 +152,7 @@ public class EnemyController : MonoBehaviour
         if (targeting.GetCurrentTarget() != null)
         {
             currentState = State.ChaseTarget;
+            animator.SetInteger("AnimationState", AnimStateMove);
             return true;
         }
         return false;
@@ -148,6 +164,7 @@ public class EnemyController : MonoBehaviour
         if (Vector3.Distance(targetHealth.transform.position, transform.position) < attackRange)
         {
             currentState = State.AttackTarget;
+            animator.SetInteger("AnimationState", AnimStateIdle);
             return true;
         }
         return false;
@@ -159,6 +176,7 @@ public class EnemyController : MonoBehaviour
         if (Vector3.Distance(targetHealth.transform.position, transform.position) > attackRange)
         {
             currentState = State.ChaseTarget;
+            animator.SetInteger("AnimationState", AnimStateMove);
             return true;
         }
         return false;
@@ -170,5 +188,15 @@ public class EnemyController : MonoBehaviour
         nextPathIndex = 0;
         waypointOffset = transform.position - path.GetWaypoint(0);
         waypointOffset.y = 0.0f;
+    }
+
+    public void OnAttack()
+    {
+        var targetHealth = targeting.GetCurrentTarget();
+        if (targetHealth && targetHealth.IsAlive())
+        {
+            // Use weapon on target
+            weapon.Use(targetHealth);
+        }
     }
 }
