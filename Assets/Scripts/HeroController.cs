@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 
 public class HeroController : NetworkBehaviour
 {
+    [Tooltip("Ignore these layers when doing input command raycast.")]
     public LayerMask commandLayerMask;
     public float attackRange;
     public float attackRate;

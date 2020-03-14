@@ -498,7 +498,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.46174863, y: 0, z: 0, w: 0.8870109}
-  m_LocalPosition: {x: 52.9, y: 65.9, z: 6.4}
+  m_LocalPosition: {x: 110.7, y: 65.9, z: 110.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -517,6 +517,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 20
+  screenEdgeThreshold: 10
+  minLimit: {x: 40, y: 0}
+  maxLimit: {x: 210, y: 180}
 --- !u!4 &1125905982 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5590331205834992105, guid: cee3da29037a7824f94913dca31cdd5b,
@@ -673,11 +676,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower
       objectReference: {fileID: 0}
-    - target: {fileID: 3416999993992890481, guid: b1325bea0bfb08646b29895fec7fcab3,
-        type: 3}
-      propertyPath: faction
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2672413404819595351, guid: b1325bea0bfb08646b29895fec7fcab3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -732,6 +730,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416999993992890481, guid: b1325bea0bfb08646b29895fec7fcab3,
+        type: 3}
+      propertyPath: faction
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1325bea0bfb08646b29895fec7fcab3, type: 3}

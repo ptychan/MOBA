@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1762378871387756697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2980110095356011533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e185153d2ddb8024c98855e60b16770c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4770953198450936071
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,6 +56,7 @@ GameObject:
   - component: {fileID: 656243738376674024}
   - component: {fileID: 4770953198558361355}
   - component: {fileID: 4770953198558361353}
+  - component: {fileID: 4733621495338030766}
   - component: {fileID: 4770953198558361358}
   - component: {fileID: 439595691216668736}
   m_Layer: 0
@@ -122,8 +135,8 @@ MonoBehaviour:
   commandLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  attackRange: 3
-  attackRate: 0.5
+  attackRange: 30
+  attackRate: 0.25
 --- !u!114 &4770953198558361353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +150,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: 0
+--- !u!114 &4733621495338030766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4770953198558361397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c1ca9acc2f58143ba8190d4ae063c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 800
 --- !u!114 &4770953198558361358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4770953200198546593}
+  - component: {fileID: 1585810733834182804}
   m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
@@ -213,6 +240,20 @@ Transform:
   m_Father: {fileID: 4770953198558361354}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1585810733834182804
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4770953200198546592}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.5
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1001 &2980932521527229979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -270,6 +311,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
+--- !u!1 &2980110095356011533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22,
+    type: 3}
+  m_PrefabInstance: {fileID: 2980932521527229979}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2977065223781433157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4168634819871070, guid: c9bc790a133e19c40b64d6db4cfb7a22,
