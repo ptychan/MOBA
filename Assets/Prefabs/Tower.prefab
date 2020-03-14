@@ -99,7 +99,7 @@ MonoBehaviour:
   projectile: {fileID: 1813935543794455361, guid: 1fb8ed676cc08c947bab4670f33fdde5,
     type: 3}
   turretTransform: {fileID: 2672413405945914021}
-  fireRate: 2
+  fireRate: 0.5
 --- !u!114 &-4278801154972249007
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -135,7 +135,7 @@ MonoBehaviour:
   commandLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  attackRange: 30
+  attackRange: 15
   attackRate: 0.25
 --- !u!114 &4770953198558361353
 MonoBehaviour:
@@ -175,7 +175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e23e0c104293f649aac373f74d79a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  projectile: {fileID: 2898621293665571950, guid: fa1140cb1ef34184391343cafe92ba18,
+    type: 3}
+  projectileSpawnTransform: {fileID: 2976724285813496165}
+  damageAmount: 20
 --- !u!114 &439595691216668736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,10 +264,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4770953198450936068}
     m_Modifications:
-    - target: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-      propertyPath: m_Name
-      value: HP_Golem
-      objectReference: {fileID: 0}
     - target: {fileID: 4168634819871070, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -309,6 +308,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
+      propertyPath: m_Name
+      value: HP_Golem
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
 --- !u!1 &2980110095356011533 stripped
@@ -320,6 +323,12 @@ GameObject:
 --- !u!4 &2977065223781433157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4168634819871070, guid: c9bc790a133e19c40b64d6db4cfb7a22,
+    type: 3}
+  m_PrefabInstance: {fileID: 2980932521527229979}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2976724285813496165 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4807764366534526, guid: c9bc790a133e19c40b64d6db4cfb7a22,
     type: 3}
   m_PrefabInstance: {fileID: 2980932521527229979}
   m_PrefabAsset: {fileID: 0}

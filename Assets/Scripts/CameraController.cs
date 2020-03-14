@@ -10,6 +10,9 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        if (!Application.isFocused)
+            return;
+
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 

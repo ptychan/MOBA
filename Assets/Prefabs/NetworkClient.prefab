@@ -77,6 +77,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5bc10a39e8c5940a4fb9d215b75319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroPrefab: {fileID: 4770953198558361397, guid: 2d368987e2113a940bc1fc6f01f12782,
+  heroPrefab: {fileID: 4770953198558361397, guid: c21cf26c1f044b042a4981d69c11e5a3,
     type: 3}
   hero: {fileID: 0}

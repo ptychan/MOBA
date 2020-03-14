@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
@@ -8,11 +9,22 @@ public class ProjectileController : MonoBehaviour
     private Vector3 lastTargetPosition;
     private Health targetHealth;
 
+    private Vector3 GetBoundCenter(Health targetHealth)
+    {
+        Vector3 center = new Vector3();
+        var colliders = targetHealth.GetComponentsInChildren<Collider>().Where(x => !x.isTrigger);
+        foreach (var collider in colliders)
+        {
+            center += collider.bounds.center;
+        }
+        return center / colliders.Count();
+    }
+
     private void Update()
     {
         if (targetHealth.IsAlive())
         {
-            lastTargetPosition = targetHealth.transform.position;
+            lastTargetPosition = GetBoundCenter(targetHealth);
         }
 
         Vector3 newPosition = Vector3.MoveTowards(transform.position, lastTargetPosition, moveSpeed * Time.deltaTime);
