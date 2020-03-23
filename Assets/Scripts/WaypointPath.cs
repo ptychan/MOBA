@@ -8,6 +8,7 @@ public class WaypointPath : MonoBehaviour
     void Start()
     {
         waypoints = new List<Transform>(GetComponentsInChildren<Transform>());
+        waypoints.RemoveAt(0);
     }
 
     void OnDrawGizmos()
